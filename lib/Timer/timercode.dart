@@ -8,13 +8,10 @@ import 'final code of timer of day.dart';
 
 // ignore: must_be_immutable
 class AnimatedContainerApp1 extends StatelessWidget {
-
   BoolController clickButton = BoolController(false);
   final bool isClick;
 
-  AnimatedContainerApp1({Key? key,
-    required this.isClick
-  }) : super(key: key);
+  AnimatedContainerApp1({Key? key, required this.isClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +36,9 @@ class AnimatedContainerApp1 extends StatelessWidget {
                           height: 300,
                           decoration: const BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.only(bottomLeft: Radius
-                                .circular(20), bottomRight: Radius.circular(
-                                20)),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20)),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black12,
@@ -58,48 +55,54 @@ class AnimatedContainerApp1 extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    DefualtBoxTime(width: 54,
-                                      textOfBox: 'AM',
-                                      clickButton: cubit.dayChangeButton,
-                                      absorbingClick: cubit.absorbingClickButton,
-                                      onTap: () {
-                                        cubit.changeDayTime();
-                                      }),
+                                    DefualtBoxTime(
+                                        width: 54,
+                                        textOfBox: 'AM',
+                                        clickButton: cubit.dayChangeButton,
+                                        absorbingClick:
+                                            cubit.absorbingClickButton,
+                                        onTap: () {
+                                          cubit.changeDayTime();
+                                        }),
                                     const SizedBox(width: 17),
-                                    DefualtBoxTime(width: 54,
+                                    DefualtBoxTime(
+                                      width: 54,
                                       textOfBox: 'PM',
                                       clickButton: !cubit.dayChangeButton,
-                                      absorbingClick: !cubit.absorbingClickButton,
+                                      absorbingClick:
+                                          !cubit.absorbingClickButton,
                                       onTap: () {
                                         cubit.changeDayTime();
                                       },
-                                      ),
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment
-                                      .baseline,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.baseline,
                                   textBaseline: TextBaseline.alphabetic,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     DefualtInkwell(
-                                      chageTime: cubit.changeTimeButton,
-                                      boxNumber: cubit.hourNumber,
-                                      absorbingClick: cubit.absorbingClickWatch,
-                                      onTap: () {
-                                        cubit.toggleTime();
-                                      }),
+                                        chageTime: cubit.changeTimeButton,
+                                        boxNumber: cubit.hourNumber,
+                                        absorbingClick:
+                                            cubit.absorbingClickWatch,
+                                        onTap: () {
+                                          cubit.toggleTime();
+                                        }),
                                     const DefualtComma(changComma: true),
                                     DefualtInkwell(
-                                      chageTime: !cubit.changeTimeButton,
-                                      boxNumber: cubit.minuteNumber,
-                                      absorbingClick: !cubit.absorbingClickWatch,
-                                      onTap: () {
-                                        cubit.toggleTime();
-                                      }),
+                                        chageTime: !cubit.changeTimeButton,
+                                        boxNumber: cubit.minuteNumber,
+                                        absorbingClick:
+                                            !cubit.absorbingClickWatch,
+                                        onTap: () {
+                                          cubit.toggleTime();
+                                        }),
                                   ],
                                 ),
                                 SliderTheme(
@@ -109,7 +112,7 @@ class AnimatedContainerApp1 extends StatelessWidget {
                                     child: Slider(
                                       value: cubit.chageTime
                                           ? cubit.hourNumber.toDouble()
-                                          :cubit.minuteNumber.toDouble() ,
+                                          : cubit.minuteNumber.toDouble(),
                                       onChanged: (value) {
                                         cubit.sliderChange(value.toInt());
                                       },
@@ -117,8 +120,7 @@ class AnimatedContainerApp1 extends StatelessWidget {
                                       max: cubit.chageTime ? 12 : 59,
                                       activeColor: Colors.red,
                                       divisions: cubit.chageTime ? 11 : 58,
-                                    )
-                                ),
+                                    )),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -129,7 +131,8 @@ class AnimatedContainerApp1 extends StatelessWidget {
                                     const BoxSized1(),
                                     const DefualtComma(changComma: false),
                                     const BoxSized1(),
-                                    DefualtBoxAction(width: 100,
+                                    DefualtBoxAction(
+                                        width: 100,
                                         textOfBox: 'Done',
                                         onTap: () {}),
                                   ],
@@ -143,9 +146,6 @@ class AnimatedContainerApp1 extends StatelessWidget {
                   ),
                 ),
               );
-            }
-        )
-    );
+            }));
   }
-
 }

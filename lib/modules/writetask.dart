@@ -8,7 +8,6 @@ import '../component/task.dart';
 import '../Timer/time.dart';
 
 class WriteTasks extends StatefulWidget {
-
   const WriteTasks({Key? key}) : super(key: key);
   @override
   State<WriteTasks> createState() => WriteTasks_State();
@@ -16,10 +15,10 @@ class WriteTasks extends StatefulWidget {
 
 // ignore: camel_case_types
 class WriteTasks_State extends State<WriteTasks> {
-  var textcontroller=TextEditingController();
+  var textcontroller = TextEditingController();
   var formkey = GlobalKey<FormState>();
-  bool itsClick= true;
-  bool changeTaskForm=false;
+  bool itsClick = true;
+  bool changeTaskForm = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,22 +37,26 @@ class WriteTasks_State extends State<WriteTasks> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Stack(
-                    children: [Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color:Colors.grey.withOpacity(0.5),
-                          width:2,),
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.grey.withOpacity(0.5),
+                            width: 2,
+                          ),
+                        ),
                       ),
-                    ),
-                      IconButton(onPressed: () {
-                        // Navigator.pop(context);
-                      },
-                        icon: const Icon(Icons.close_rounded,
-
-                          color: Colors.black87,),
-
+                      IconButton(
+                        onPressed: () {
+                          // Navigator.pop(context);
+                        },
+                        icon: const Icon(
+                          Icons.close_rounded,
+                          color: Colors.black87,
+                        ),
                         highlightColor: Colors.transparent,
                         splashColor: Colors.transparent,
                       ),
@@ -64,15 +67,15 @@ class WriteTasks_State extends State<WriteTasks> {
                   height: 90,
                 ),
                 Form(
-                  key:formkey ,
+                  key: formkey,
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: DefaultFormField(sideColor: Colors.grey,
+                    child: DefaultFormField(
+                      sideColor: Colors.grey,
                       Raduis: 5.5,
                       textColor: const Color(0xffa7b0d1),
                       validate: (String? value) {
-                        if (value!.isEmpty)
-                        {
+                        if (value!.isEmpty) {
                           return 'You must enter the task';
                         }
                         return null;
@@ -81,7 +84,6 @@ class WriteTasks_State extends State<WriteTasks> {
                       text: 'Enter new task',
                       controller: textcontroller,
                       boxColor: Colors.transparent,
-
                     ),
                   ),
                 ),
@@ -94,13 +96,15 @@ class WriteTasks_State extends State<WriteTasks> {
                     children: [
                       DefaultMaterialButtonWithAnimation(
                         buttonWidth: 130,
-                        buttonShape:const StadiumBorder(
-                          side: BorderSide(color:Color(0xffd8dee8),
-                            width:2,),
+                        buttonShape: const StadiumBorder(
+                          side: BorderSide(
+                            color: Color(0xffd8dee8),
+                            width: 2,
+                          ),
                         ),
                         onPressed: () {
                           setState(() {
-                            itsClick=!itsClick;
+                            itsClick = !itsClick;
                           });
                         },
                         buttonColor: Colors.white,
@@ -109,10 +113,9 @@ class WriteTasks_State extends State<WriteTasks> {
                         textColor: const Color(0xffa7b0d1),
                         textWeight: FontWeight.bold,
                         buttonIcon: Icons.calendar_today_outlined,
-                        iconColor:  const Color(0xffa7b0d1),
+                        iconColor: const Color(0xffa7b0d1),
                         iconSize: 25,
                       ),
-
                       const BoxSized1(),
                       Stack(
                         children: [
@@ -123,63 +126,71 @@ class WriteTasks_State extends State<WriteTasks> {
                               width: 25,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
-                                border: Border.all(color:changeTaskForm?Colors.blue:const Color(0xfff757ff),
-                                  width:3,),
+                                border: Border.all(
+                                  color: changeTaskForm
+                                      ? Colors.blue
+                                      : const Color(0xfff757ff),
+                                  width: 3,
+                                ),
                               ),
                             ),
                           ),
                           Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
-                                border: Border.all(color:const Color(0xffd8dee8),
-                                  width:2,),
+                                border: Border.all(
+                                  color: const Color(0xffd8dee8),
+                                  width: 2,
+                                ),
                               ),
-                              child:IconButton(onPressed: (){
-                                setState(() {
-                                  changeTaskForm=!changeTaskForm;
-                                });
-                              },
-                                icon:  Icon(Icons.circle,
-                                  color:changeTaskForm?Colors.blue:const Color(0xfff757ff),
-                                  size: 17,),)),
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    changeTaskForm = !changeTaskForm;
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.circle,
+                                  color: changeTaskForm
+                                      ? Colors.blue
+                                      : const Color(0xfff757ff),
+                                  size: 17,
+                                ),
+                              )),
                         ],
                       ),
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(82.0),
-                  child: IconsScreen(),
-                ),
+                // const Padding(
+                //   padding: EdgeInsets.all(82.0),
+                //   child: IconsScreen(),
+                // ),
                 const SizedBox(height: 50),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      DefaultMaterialButton(
-                        buttonWidth: 50,
-                        buttonColor: Colors.blue,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        buttonShape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(60.0))),
-                        buttonText: 'New task',
-                        textSize: 19,
-                        textColor: Colors.white,
-                        textWeight: FontWeight.bold,
-                        buttonIcon: Icons.keyboard_arrow_up,
-                        iconColor: Colors.white,
-                        iconSize: 25,
-                      ),
-                    ]),
+                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  DefaultMaterialButton(
+                    buttonWidth: 50,
+                    buttonColor: Colors.blue,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    buttonShape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(60.0))),
+                    buttonText: 'New task',
+                    textSize: 19,
+                    textColor: Colors.white,
+                    textWeight: FontWeight.bold,
+                    buttonIcon: Icons.keyboard_arrow_up,
+                    iconColor: Colors.white,
+                    iconSize: 25,
+                  ),
+                ]),
               ],
             ),
           ),
-
-          Center(child: AnimatedContainerApp1( isClick: itsClick)),
-
+          Center(child: AnimatedContainerApp1(isClick: itsClick)),
         ],
       ),
     );
   }
 }
-
