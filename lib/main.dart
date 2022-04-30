@@ -1,9 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'Timer/timercomponent.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todoapp_version2/shared/cubit/cubit.dart';
 import 'component/constant.dart';
-import 'Timer/time.dart';
-import 'modules/mainscreen.dart';
 import 'modules/writetask.dart';
 void main(){
   BlocOverrides.runZoned(
@@ -12,7 +10,6 @@ void main(){
     },
     blocObserver: MyBlocObserver(),
   );
-
 }
 
 class MyApp extends StatelessWidget
@@ -22,9 +19,16 @@ class MyApp extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: WriteTasks(),
+    return MultiBlocProvider(
+      providers:[
+        BlocProvider(create:(BuildContext context) =>AppCubit(),),
+        BlocProvider(create:(BuildContext context) =>CalendarCubit(),),
+        BlocProvider(create:(BuildContext context) =>SunAndMoonCubit(),),
+      ],
+        child: const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: WriteTasks(),
+    )
     );
   }
 }

@@ -72,11 +72,11 @@ class _DefualtBoxActionState extends State<DefualtBoxAction> {
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                side:  const BorderSide(color: Colors.blue, width: 1),
+                side:  const BorderSide(color: Color(0xff006aff), width: 1),
                 borderRadius: BorderRadius.circular(30.0),
               ),)
           ),
-          child: Text(widget.textOfBox,style: const TextStyle(color:Colors.blue,)),
+          child: Text(widget.textOfBox,style: const TextStyle(color:Color(0xff006aff),)),
           onPressed: widget.onTap,
         ),
     );
@@ -135,7 +135,7 @@ class DefualtComma extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(changComma? ':':'|',
       style:  TextStyle(fontSize: changComma? 60:50,
-        color: changComma? Colors.black:Colors.blue
+        color: changComma? Colors.black:const Color(0xff006aff)
       ),
     );
   }

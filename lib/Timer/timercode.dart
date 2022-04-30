@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp_version2/Timer/timercomponent.dart';
-import '../component/constant.dart';
 import '../shared/cubit/cubit.dart';
 import '../shared/cubit/states.dart';
 import 'final code of timer of day.dart';
@@ -128,9 +127,13 @@ class AnimatedContainerApp1 extends StatelessWidget {
                                         width: 100,
                                         textOfBox: 'Cancel',
                                         onTap: () {}),
-                                    const BoxSized1(),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
                                     const DefualtComma(changComma: false),
-                                    const BoxSized1(),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
                                     DefualtBoxAction(
                                         width: 100,
                                         textOfBox: 'Done',

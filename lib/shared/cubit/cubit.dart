@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp_version2/shared/cubit/states.dart';
-
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:intl/intl.dart';
 import '../../Timer/timercomponent.dart';
+import '../../celender/calsulate-celander.dart';
 
 const List<double> listOfPosition = [
   0,
@@ -65,6 +67,103 @@ class AppCubit extends Cubit<AppStates> {
   //      print('Done');
   //     });
   //   }
+
+  double circleScale=1.2;
+  double duration=300;
+  Color circleColor=const Color(0xff006aff);
+// ignore: non_constant_identifier_names
+void OpenTasksScreen(){
+  circleScale=40;
+  circleColor=Colors.white;
+  emit(OpenTasksScreenState());
+}
+  // ignore: non_constant_identifier_names
+  void ReturnCircle(){
+    circleScale=1.2;
+    duration=1000;
+    emit(ReturnCircleState());
+  }
+  // ignore: non_constant_identifier_names
+  void EndOfCircle(){
+  duration=300;
+  circleColor=const Color(0xff006aff);
+  emit(EndOfCircleState());
+  }
+}
+
+class CalendarCubit extends Cubit<CalendarStates> {
+  CalendarCubit() : super(CalendarInitialState());
+  static CalendarCubit get(context) => BlocProvider.of(context);
+  late var calendar=CalculateCalender();
+  late List<String> nameOfDays =  calendar.nameOfDays;
+  late List<String> months = calendar.months;
+  bool absorbOfArrow=true;
+  int lastValue=0;
+  List<Color> colorOfCircle=List.generate(42,(count)=>Colors.white);
+  void changeMonthsPlus(){
+    absorbOfArrow=false;
+    if(calendar.monthChange==11){
+      calendar.monthChange=0;
+      calendar.year=(int.parse(calendar.year)+1).toString();
+    }
+    else{
+      calendar.monthChange++;
+    }
+    emit(ChangeMonthsPlusState());
+  }
+  void changeMonthsMinus(){
+    if(calendar.monthChange==0){
+      calendar.monthChange=11;
+      calendar.year=(int.parse(calendar.year)-1).toString();
+    }
+    else{
+      calendar.monthChange--;
+    }
+    if(calendar.monthChange<(int.parse(calendar.month))&&calendar.year== DateFormat('yyyy').format(DateTime.now()))
+    {
+
+        if (lastValue < (calendar.ReturnList()[2]+calendar.day)) {
+          colorOfCircle[lastValue] = Colors.white;
+        }
+        print(calendar.ReturnList()[2]+calendar.day);
+      absorbOfArrow=true;
+    }
+    emit(ChangeMonthsMinusState());
+  }
+  // ignore: non_constant_identifier_names
+  bool ClickButtonAbsorbing(int index) {
+    bool clickButton=false;
+
+  if(calendar.monthChange==(int.parse(calendar.month)-1)&&calendar.year== DateFormat('yyyy').format(DateTime.now()))
+    {
+     if(index<(calendar.day+calendar.CalculateDay())-1)
+       {
+      clickButton=true;}
+    }
+    return clickButton;
+  }
+  // ignore: non_constant_identifier_names
+  void ClickButton(int index){
+      {
+        if(index<calendar.CalculateDay())
+        {
+          changeMonthsMinus();
+
+        }
+        else if(index>=calendar.CalculateDay()&&index<(calendar.listOfDayOfCurrentMonth.length+calendar.CalculateDay()))
+            {
+
+              colorOfCircle[lastValue]=Colors.white;
+              colorOfCircle[index]=Colors.blue;
+              emit(ChangeCurrentMonthsState());
+            }
+        else
+          {
+            changeMonthsPlus();
+          }
+        lastValue=index;
+      }
+  }
 }
 
 class SunAndMoonCubit extends Cubit<SunAndMoonStates> {

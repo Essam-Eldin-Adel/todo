@@ -29,7 +29,6 @@ class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
             // Use the properties stored in the State class.
             width: double.infinity,
             height: _height,
-            color: Colors.blue,
             decoration: BoxDecoration(color: checkCircle?Colors.white:Colors.white.withOpacity(0.9),
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
                 boxShadow: const [BoxShadow(

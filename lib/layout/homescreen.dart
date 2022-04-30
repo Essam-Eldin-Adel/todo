@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp_version2/component/component.dart';
-import '../modules/mainscreen.dart';
 // ignore: must_be_immutable
 class  HomeScreen extends StatelessWidget {
   var nameController = TextEditingController();
@@ -8,8 +6,9 @@ class  HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return mainscreen(name: 'essam',);
-    //   Scaffold(
+    // ignore: null_check_always_fails
+    return null!;
+    // return Scaffold(
     //   body: Container(
     //     width: double.infinity,
     //     decoration:  const BoxDecoration(

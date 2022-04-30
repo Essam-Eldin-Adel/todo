@@ -1,274 +1,203 @@
 import 'package:flutter/material.dart';
-
 // ignore: must_be_immutable
-class DefaultFormField extends StatelessWidget {
-  final TextInputType keyBordType;
-  final TextEditingController controller;
-  final FormFieldValidator<String>? validate ;
-  final String text;
-  final Color boxColor;
-  final Color textColor;
-  final Color sideColor;
-  // ignore: non_constant_identifier_names
-  final double Raduis;
-  IconData? suf;
-  Function()? tap;
-  Function(String)? submit;
-  Function(String)? change;
-  IconData? pref;
-  Color? prefixColor;
-  DefaultFormField({Key? key,
-    required this.controller,
-    required this.keyBordType,
-    required this.validate,
-    required this.text,
-    this.pref,
-    required this.textColor,
-    this.prefixColor,
-    required this.boxColor,
-    required this.sideColor,
-    // ignore: non_constant_identifier_names
-    required this.Raduis,
-    this.suf,
-    this.tap,
-    this.submit,
-    this.change,
-  }) : super(key: key);
-  bool checkVisible= true;
+class TextIcons extends StatelessWidget {
+  final Function() onPressed;
+  final IconData textIcon;
+   double? sizeOfIcon;
+    TextIcons({Key? key,
+    required this.onPressed,
+    required this.textIcon,
+     this.sizeOfIcon}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: checkVisible,
-      child: TextFormField(
-        style: const TextStyle(
-            fontSize: 27
-        ),
-        controller: controller,
-        keyboardType: keyBordType,
-        onTap: tap,
-        onFieldSubmitted: submit,
-        onChanged: change,
-        validator: validate,
-        decoration: InputDecoration(
-          isDense: true,
-          contentPadding: const EdgeInsets.fromLTRB(0, 25, 0, 25),
-          hintText: text,
-          hintStyle: TextStyle(color: textColor,
-              fontSize: 27,
-              fontWeight: FontWeight.w400),
-          fillColor: boxColor,
-          filled: true,
-          prefix: Icon(pref,
-            color: prefixColor,),
-          suffix: Icon(suf),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
-            borderRadius: BorderRadius.circular(Raduis),
-          ),
-          enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
-              borderRadius: BorderRadius.circular(Raduis)
-          ),
-
-
-        ),
-
-      ),
+    return IconButton(onPressed: onPressed,
+      icon:  Icon(textIcon,
+        size: sizeOfIcon,
+        color: const Color(0xffb4b9cc),),
+      padding: const EdgeInsets.all(0.0),
+      constraints: const BoxConstraints(),
     );
   }
 }
-
-// ignore: must_be_immutable
-class DefaultMaterialButton extends StatelessWidget {
-  final ShapeBorder buttonShape;
-  final Function() onPressed;
-  final double buttonWidth;
-  final Color buttonColor;
-  final String buttonText;
-  final double textSize;
-  final Color textColor;
-  final IconData buttonIcon;
-  final double iconSize;
-  final Color iconColor;
-  FontWeight? textWeight;
-   DefaultMaterialButton({Key? key,
-     required this.buttonShape,
-     required this.onPressed,
-     required this.buttonWidth,
-     required this.buttonColor,
-     required this.buttonText,
-     required this.textSize,
-     required this.textColor,
-     required this.buttonIcon,
-     required this.iconSize,
-     required this.iconColor,
-     this.textWeight,
-  }) : super(key: key);
+class TextStyles extends StatelessWidget {
+  final String text;
+  final Color colorOfText;
+  final double size;
+  const TextStyles({Key? key, required this.text,
+    required this.colorOfText, required this.size}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: onPressed,
-      shape: buttonShape,
-      focusElevation: 0,
-      autofocus: true,
-      height: 50,
-      minWidth: buttonWidth,
-      color: buttonColor,
-      child: Row(
-        children:  [
-          Text(buttonText,
-              style: TextStyle(
-              fontSize: textSize,
-              fontWeight: textWeight,
-              color: textColor
-          )),
-          const SizedBox(width: 10),
-          Icon(buttonIcon,
-            size: iconSize,
-            color: iconColor),
-        ]
+    return Text(text,
+      style:  TextStyle(
+          fontSize: size,
+          fontWeight: FontWeight.bold,
+          color: colorOfText,
       ),);
   }
 }
 
+
+// ignore: must_be_immutable
 class DefaultMaterialButtonWithAnimation extends StatelessWidget {
-  final ShapeBorder buttonShape;
   final Function() onPressed;
-  final double buttonWidth;
-  final Color buttonColor;
   final String buttonText;
-  final double textSize;
-  final Color textColor;
   final IconData buttonIcon;
-  final double iconSize;
-  final Color iconColor;
-  FontWeight? textWeight;
-  DefaultMaterialButtonWithAnimation({Key? key,
-    required this.buttonShape,
+  const DefaultMaterialButtonWithAnimation({Key? key,
     required this.onPressed,
-    required this.buttonWidth,
-    required this.buttonColor,
     required this.buttonText,
-    required this.textSize,
-    required this.textColor,
     required this.buttonIcon,
-    required this.iconSize,
-    required this.iconColor,
-    this.textWeight,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
-      shape: buttonShape,
-      focusElevation: 0,
-      autofocus: true,
+      shape:const StadiumBorder(
+        side: BorderSide(color:Color(0xffd8dee8),
+          width:1,),
+      ),
+      elevation: 2,
       height: 50,
-      minWidth: buttonWidth,
-      color: buttonColor,
+      splashColor:Colors.white,
+      highlightColor: Colors.white,
+      color: Colors.white,
       child: Row(
           children:  [
-            Text(buttonText,
-                style: TextStyle(
-                    fontSize: textSize,
-                    fontWeight: textWeight,
-                    color: textColor
-                )),
-            const SizedBox(width: 10),
+
             Icon(buttonIcon,
-                size: iconSize,
-                color: iconColor),
+                size: 23,
+                color: const Color(0xffa7b0d1),),
+            const SizedBox(width: 5),
+            Text(buttonText,
+                style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xffa7b0d1),
+                )),
           ]
       ),);
   }
 }
 
+class IconsScreen extends StatelessWidget {
+  const IconsScreen({Key? key}) : super(key: key);
 
-Widget box({
-  required String numberOfTasks,
-  required String categories,
-  FontWeight? taskBold,
-  required Color taskColor,
-  required double taskSize,
-  FontWeight? cateBold,
-  required Color cateColor,
-  required double cateSize,
-  required double tasks,
-  required double maxTasks,
-  required Color activeColor,
-  required Color inactiveColor,
-})=>Container(
-  width: 200,
-height: 90,
-decoration: const BoxDecoration(
-color: Colors.white,
-borderRadius: BorderRadius.all(Radius.circular(20)),
-boxShadow: [BoxShadow(
-color: Colors.black12,
-spreadRadius: 0.05,
-offset: Offset(0, 2),
-blurRadius: 3,)]),
-child :Padding(
-  padding: const EdgeInsets.all(10.0),
-  child:   Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    const SizedBox(
-      height: 5,
-    ),
-    Text(numberOfTasks,style:TextStyle(
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        IconButton(onPressed: (){},
+          icon: const Icon(Icons.create_new_folder_outlined, size: 35,color:Color(0xffa7b0d1)),
+          splashColor:Colors.white,
+          highlightColor: Colors.white,
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        IconButton(onPressed: (){},
+          icon: const Icon(Icons.flag_outlined,size: 35,color:Color(0xffa7b0d1)),
+          splashColor:Colors.white,
+          highlightColor: Colors.white,
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        Transform.scale(
+          scaleX: -1,
+          child:IconButton(onPressed: (){},
+            icon: const Icon(Icons.brightness_2_outlined,size: 35,color:Color(0xffa7b0d1)),
+            splashColor:Colors.white,
+            highlightColor: Colors.white,
+          ),
 
-      fontSize:taskSize ,
+        )
+      ],
+    );
+  }
+}
 
-      color:taskColor ,
+// ignore: must_be_immutable
+class BoxOfTasks extends StatelessWidget {
+  final String numberOfTasks;
+  final String categories;
+  final double tasks;
+  final double maxTasks;
+  final Color activeColor;
+  final Color inactiveColor;
+   BoxOfTasks({Key? key,
+     required this.numberOfTasks,
+     required this.categories,
+    required this.tasks,
+    required this.maxTasks,
+    required this.activeColor,
+    required this.inactiveColor}) : super(key: key);
 
-      fontWeight: taskBold,
+  late double screenWidth;
+  late double screenHeight;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 200,
+        height: 95,
+        decoration:  const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            boxShadow: [BoxShadow(
+              color: Colors.black12,
+              spreadRadius: 0.05,
+              offset: Offset(0, 2),
+              blurRadius: 3,)]),
+        child :Padding(
+          padding: const EdgeInsets.all(10.0),
+          child:   Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              Text(numberOfTasks,style:const TextStyle(
+                fontSize:15 ,
+                color:Color(0xffb4b9cc) ,
+                fontWeight: FontWeight.w700,
+              ),),
+              const SizedBox(
+                height: 3,
+              ),
+              Text(categories,style:const TextStyle(
+                fontSize:20 ,
+                color:Colors .black,
+                fontWeight: FontWeight.w700,
+              ),),
+              const SizedBox(
+                height: 10,
+              ),
+              SliderTheme(
+                data: const SliderThemeData(
+                  overlayShape: RoundSliderOverlayShape(overlayRadius: 0.00001),
+                  thumbShape: RoundSliderThumbShape(enabledThumbRadius:4),
+                ),
+                child: Slider(value: tasks,
+                    activeColor: activeColor,
+                    inactiveColor: inactiveColor,
+                    min: 0,
+                    max: maxTasks,
+                    onChanged: (value){}
 
-    ),),
-    const SizedBox(
-
-      height: 3,
-
-    ),
-    Text(categories,style:TextStyle(
-
-      fontSize:cateSize ,
-
-      color:cateColor ,
-
-      fontWeight: cateBold,
-
-    ),),
-    const SizedBox(
-
-      height: 10,
-
-    ),
-    SliderTheme(
-      data: const SliderThemeData(
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 0.00001),
-        thumbShape: RoundSliderThumbShape(enabledThumbRadius:4),
-      ),
-      child: Slider(value: tasks,
-          activeColor: activeColor,
-          inactiveColor: inactiveColor,
-          min: 0,
-          max: maxTasks,
-          onChanged: (value){}
-
-      ),
-    )
+                ),
+              )
 
 
 
-  ],
+            ],
 
-  ),
-)
+          ),
+        )
 
-);
+    );
+  }
+}
 
 
 // ignore: must_be_immutable
@@ -319,7 +248,7 @@ class TasksBord extends StatefulWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.transparent,
-                        border: Border.all(color:widget.clickColor? const Color(0xfff757ff):Colors.blue,
+                        border: Border.all(color:widget.clickColor? const Color(0xfff757ff):const Color(0xff006aff),
                             width:widget.widthChange),
                       ),
                     ),
@@ -358,9 +287,9 @@ class TasksBord extends StatefulWidget {
                   constraints: BoxConstraints.tight(
                       const Size(30, 30)),
 
-                  highlightColor:widget.clickColor? const Color(0xfff757ff).withOpacity(0.7):Colors.blue.withOpacity(0.7),
+                  highlightColor:widget.clickColor? const Color(0xfff757ff).withOpacity(0.7):const Color(0xff006aff).withOpacity(0.7),
 
-                  splashColor: widget.clickColor? const Color(0xfff757ff).withOpacity(0.3):Colors.blue.withOpacity(0.3),
+                  splashColor: widget.clickColor? const Color(0xfff757ff).withOpacity(0.3):const Color(0xff006aff).withOpacity(0.3),
 
                   child: checkCircle?null:Icon(Icons.check_circle_rounded,
 
@@ -374,8 +303,8 @@ class TasksBord extends StatefulWidget {
 
                     width: 4,
 
-                    color: checkCircle?(widget.clickColor?const Color(0xfff757ff):Colors.blue)
-                        :(widget.clickColor?const Color(0xfff757ff).withOpacity(0):Colors.blue.withOpacity(0)),
+                    color: checkCircle?(widget.clickColor?const Color(0xfff757ff):const Color(0xff006aff))
+                        :(widget.clickColor?const Color(0xfff757ff).withOpacity(0):const Color(0xff006aff).withOpacity(0)),
 
                   )),
 
@@ -408,6 +337,7 @@ class TasksBord extends StatefulWidget {
   // bool shouldRepaint(covariant CustomPainter oldDelegate) =>false; // this always be false
   //
 } // this class for make circle
+// ignore: camel_case_types, must_be_immutable
 class circleClick extends StatefulWidget {
 
   circleClick({Key? key}) : super(key: key);
@@ -420,6 +350,7 @@ class circleClick extends StatefulWidget {
   _circleClick createState() => _circleClick();
 }
 
+// ignore: camel_case_types
 class _circleClick extends State<circleClick> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAninmation;
@@ -480,7 +411,6 @@ class _circleClick extends State<circleClick> with SingleTickerProviderStateMixi
           children: [
             InkWell(
             onTap:  (){
-              print('f');
               _controller.forward();
             },),
             Center(
@@ -491,7 +421,7 @@ class _circleClick extends State<circleClick> with SingleTickerProviderStateMixi
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.transparent,
-                  border: Border.all(color:Colors.blue,
+                  border: Border.all(color:const Color(0xff006aff),
                       width:5,),
                 ),
               ),
